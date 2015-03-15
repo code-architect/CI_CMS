@@ -1,5 +1,22 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+
+/**
+ * Auto load function to load the libraries
+ * @param unknown $classname
+ */
+function __autoload($classname){
+    // If class name does't start with CI_ then,
+    if(strpos($classname, 'CI_') !== 0){
+        // it will try to find it in this path
+        $file = APPPATH . 'libraries/' . $classname . '.php';
+        // and if exists it will load it 
+        if(file_exists($file) && is_file($file)){
+            @include_once($file);
+        }
+    }
+}
+
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
