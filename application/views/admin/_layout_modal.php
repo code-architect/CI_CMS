@@ -2,12 +2,12 @@
  
  <body style="background: #555;">
  <div class="modal show" role="dialog">
-    <div class="modal-header">
-        <h3>Page Title</h3>
-    </div>
+    
+    <?php $this->load->view($subview); // subview is set in ncontroller ?>
+    
     <div class="modal-body"></div>
     <div class="modal-footer">
-        &copy; <?php echo $meta_title; ?>
+        &copy; <?php echo date('Y')." ".$meta_title; ?>
     </div>
  </div>                         
                        
