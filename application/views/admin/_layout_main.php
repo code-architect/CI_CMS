@@ -26,7 +26,7 @@
             <div class="span3">
                 <section>
                     <?php echo mailto('xyz@abc.com', '<i class="icon-user"></i> xyz@abc.com'); ?><br>
-                    <?php echo anchor('admin/users/logout', '<i class="icon-off"></i>logout'); ?>
+                    <?php echo anchor('admin/user/logout', '<i class="icon-off"></i>logout'); ?>
                 </section>
             </div>
          </div>   
