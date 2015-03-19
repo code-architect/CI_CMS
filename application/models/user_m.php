@@ -16,6 +16,34 @@ class User_m extends MY_Model{
                         'rules' => 'trim|required'            
                       ],
     );
+    
+    public $rules_admin = array(
+        'name' => [
+            'field' => 'name',
+            'label' => 'Name',
+            'rules' => 'trim|required|xss_clean'
+        ],
+        'order' => [
+            'field' => 'order',
+            'label' => 'Order',
+            'rules' => 'trim|is_natural'
+        ],
+        'email' => [
+            'field' => 'email',
+            'label' => 'Email',
+            'rules' => 'trim|required|valid_email|xss_clean|callback__unique_email'
+        ],
+        'password' => [
+            'field' => 'password',
+            'label' => 'Password',
+            'rules' => 'trim|matches[password_confirm]'
+        ],
+        'password_confirm' => [
+            'field' => 'password confirm',
+            'label' => 'Confirm Password',
+            'rules' => 'trim|matches[password]'
+        ],
+    );
    
     
     public function __construct(){

@@ -6,8 +6,7 @@ class Dashboard extends Admin_Controller{
         parent::__construct();
     }
     
-    public function index() {
-        
+    public function index() {        
         $this->load->view('admin/_layout_main', $this->data);
     }
     
