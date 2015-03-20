@@ -14,6 +14,21 @@ class MY_Model extends CI_Model {
     }
     
     
+    
+    /**
+     * Will take an array of fields, that we want to post the value from
+     * @param array $fields
+     */
+    public function array_from_post($fields){
+        foreach ($fields as $field){
+            $data[$field] = $this->input->post($field);   
+        }        
+        return $data;
+    }
+    
+    
+    
+    
     /**
      * Get Records
      * @param string $id
@@ -115,6 +130,8 @@ class MY_Model extends CI_Model {
             $this->db->delete($this->_table_name);
         }
     }
+    
+    
     
 }
 

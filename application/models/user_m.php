@@ -22,12 +22,7 @@ class User_m extends MY_Model{
             'field' => 'name',
             'label' => 'Name',
             'rules' => 'trim|required|xss_clean'
-        ],
-        'order' => [
-            'field' => 'order',
-            'label' => 'Order',
-            'rules' => 'trim|is_natural'
-        ],
+        ],        
         'email' => [
             'field' => 'email',
             'label' => 'Email',
@@ -90,6 +85,8 @@ class User_m extends MY_Model{
     }
     
     
+    
+    
     /**
      * Hashing the passord
      * @param pasword $string
@@ -97,6 +94,33 @@ class User_m extends MY_Model{
      */
     public function hash($string){
         return hash('sha1', $string . config_item('encryption_key'));    
+    }
+    
+    
+    
+    
+    /**
+     * get new user
+     */
+    public function get_new(){
+        // empty class
+        $user = new stdClass();
+        $user->name = '';
+        $user->email = '';
+        $user->password = '';
+        return $user;        
+    }
+    
+    
+    
+    
+    /**
+     * front page user get
+     */
+    public function get_front_page_user(){
+        $this->db->where('id !=' ,$this->session->userdata('id'));
+        $query = $this->db->get($this->_table_name);
+        return $query->result();
     }
     
 }

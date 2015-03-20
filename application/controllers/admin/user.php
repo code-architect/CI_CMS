@@ -11,8 +11,9 @@ class User extends Admin_Controller{
     /**
      * User index page
      */
-    public function index(){        
-        $this->data['users'] = $this->user_m->get();
+    public function index(){   
+        //current user         
+        $this->data['users'] = $this->user_m->get_front_page_user();
         $this->data['subview'] = 'admin/user/index';
         $this->load->view('admin/_layout_main', $this->data);
     }
@@ -24,8 +25,14 @@ class User extends Admin_Controller{
      * Edit User
      * @param string $id userid
      */
-    public function edit($id = NULL){
-        $id == NULL || $this->data['user'] = $this->user_m->get($id);
+    public function edit($id = NULL){   
+             
+        if($id){
+            $this->data['user'] = $this->user_m->get($id);
+            count($this->data['user']) || $this->data['errors'][] = 'User could not be found';            
+        } else {
+            $this->data['user'] = $this->user_m->get_new();
+        }
         
         $rules = $this->user_m->rules_admin;
         // hacking into the rules, because in certain user password need to be required        
@@ -34,7 +41,11 @@ class User extends Admin_Controller{
         $this->form_validation->set_rules($rules);
         
         if($this->form_validation->run() == TRUE){
-            
+            // saving values from the form
+            $data = $this->user_m->array_from_post(array('name', 'email', 'password'));
+            $data['password'] = $this->user_m->hash($data['password']);
+            $this->user_m->save($data, $id);
+            redirect('admin/user');
         }
         
         $this->data['subview'] = 'admin/user/edit';
@@ -44,8 +55,14 @@ class User extends Admin_Controller{
     
     
     
-    
-    public function delete($id){}
+    /**
+     * Delete User
+     * @param unknown $id
+     */
+    public function delete($id){
+        $this->user_m->delete($id);
+        redirect('admin/user');
+    }
     
     
     
