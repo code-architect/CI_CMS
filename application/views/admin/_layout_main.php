@@ -7,7 +7,7 @@
         <a class="brand" href="<?php echo site_url('admin/dashboard'); ?>"><?php echo $meta_title; ?></a>
             <ul class="nav">
                 <li class="active"><a href="<?php echo site_url('admin/dashboard'); ?>">Dashboard</a></li>
-                <li><?php echo anchor('admin/pages', 'Pages'); ?></li>
+                <li><?php echo anchor('admin/page', 'Pages'); ?></li>
                 <li><?php echo anchor('admin/user', 'Users'); ?></li>
             </ul>
         </div>
