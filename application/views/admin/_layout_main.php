@@ -5,11 +5,13 @@
     <div class="navbar navbar-static-top navbar-inverse">
         <div class="navbar-inner">
         <a class="brand" href="<?php echo site_url('admin/dashboard'); ?>"><?php echo $meta_title; ?></a>
+        
             <ul class="nav">
-                <li class="active"><a href="<?php echo site_url('admin/dashboard'); ?>">Dashboard</a></li>
-                <li><?php echo anchor('admin/page', 'Pages'); ?></li>
-                <li><?php echo anchor('admin/page/order', 'Order Pages'); ?></li>
-                <li><?php echo anchor('admin/user', 'Users'); ?></li>                
+                <li <?php if($this->uri->segment(2) == 'dashboard') {echo 'class="active"'; } ?>><a href="<?php echo site_url('admin/dashboard'); ?>">Dashboard</a></li>
+                <li <?php if($this->uri->segment(2) == 'page' && $this->uri->segment(3) == 'order') {echo ''; } elseif($this->uri->segment(2) == 'page') { echo 'class="active"'; } ?>><?php echo anchor('admin/page', 'Pages'); ?></li>
+                <li <?php if($this->uri->segment(3) == 'order') {echo 'class="active"'; } ?>><?php echo anchor('admin/page/order', 'Order Pages'); ?></li>
+                <li <?php if($this->uri->segment(2) == 'article') {echo 'class="active"'; } ?>><?php echo anchor('admin/article', 'News Articles'); ?></li>                
+                <li <?php if($this->uri->segment(2) == 'user') {echo 'class="active"'; } ?>><?php echo anchor('admin/user', 'Users'); ?></li>                
                 
             </ul>
         </div>
