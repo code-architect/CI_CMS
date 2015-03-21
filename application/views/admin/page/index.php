@@ -5,6 +5,7 @@
 		<thead>
 		<tr>
 			<td>Title</td>
+            <td>Parent</td>
 			<td>Edit</td>
 			<td>Delete</td>
 		</tr>
@@ -13,6 +14,7 @@
 		  <?php if(count($pages)): foreach($pages as $page): ?>	
 		      <tr>
 		      	<td><?php echo anchor('admin/page/edit/'.$page->id, $page->title); ?></td>
+		      	<td><?php echo $page->parent_title; ?></td>
 		      	<td><?php echo btn_edit('admin/page/edit/'.$page->id); ?></td>
 		      	<td><?php echo btn_delete('admin/page/delete/'.$page->id); ?></td>		      	
 		      </tr>
