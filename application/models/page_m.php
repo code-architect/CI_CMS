@@ -62,6 +62,50 @@ class Page_m extends MY_Model{
     
     
     
+    /**
+     * Save page order
+     * @param array $pages
+     */
+    public function save_order($pages)
+    {
+        if (count($pages)) {
+            foreach ($pages as $order => $page){
+                
+                // only update the page if item id is not an empty string
+                if($page['item_id'] != ''){
+                    $data = ['parent_id' => (int) $page['parent_id'], 'order' => $order];
+                    $this->db->set($data)->where($this->_primary_key, $page['item_id'])->update($this->_table_name);
+                }
+            }
+        }    
+    }
+    
+    
+    
+    
+    /**
+     * Preparing the page array for nesting
+     */
+    public function get_nested(){
+        $pages = $this->db->get('pages')->result_array();
+        
+        $array = array();
+        foreach ($pages as $page){
+            
+            // If page doesn't have a parent_id, add it to the array
+            if(!$page['parent_id']){
+                $array[$page['id']] = $page;
+            } else{
+                // If page does have a parent id, then add it to the key, but inside of a children    
+                $array[$page['parent_id']]['children'][] = $page;
+            }
+        }
+        return $array;
+    }
+    
+    
+    
+    
     public function get_with_parent($id = NULL, $single = FALSE){
         $this->db->select('pages.*, p.slug as parent_slug, p.title as parent_title');
         $this->db->join('pages as p', 'pages.parent_id = p.id', 'left');

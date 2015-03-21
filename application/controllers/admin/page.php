@@ -8,6 +8,10 @@ class Page extends Admin_Controller{
     }
     
     
+   
+    
+    
+    
     
     /**
      * page index page
@@ -20,6 +24,42 @@ class Page extends Admin_Controller{
         $this->data['subview'] = 'admin/page/index';
         $this->load->view('admin/_layout_main', $this->data);
     }
+    
+    
+    
+    
+    
+    /**
+     * Order the pages
+     */
+    public function order(){
+    
+        $this->data['sortable'] = TRUE;
+        //load view
+        $this->data['subview'] = 'admin/page/order';
+        $this->load->view('admin/_layout_main', $this->data);
+    }
+    
+    
+    
+    
+    /**
+     * Post the result of the order() method
+     */
+    public function order_ajax(){
+        // Save order for ajax call
+        if(isset($_POST['sortable'])){
+            $this->page_m->save_order($_POST['sortable']);
+        }
+        
+        //Fetch All pages
+        $this->data['pages'] = $this->page_m->get_nested();
+        
+        //load view       
+        $this->load->view('admin/page/order_ajax', $this->data);
+    }
+    
+    
     
     
     

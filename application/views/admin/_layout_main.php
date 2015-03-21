@@ -8,7 +8,9 @@
             <ul class="nav">
                 <li class="active"><a href="<?php echo site_url('admin/dashboard'); ?>">Dashboard</a></li>
                 <li><?php echo anchor('admin/page', 'Pages'); ?></li>
-                <li><?php echo anchor('admin/user', 'Users'); ?></li>
+                <li><?php echo anchor('admin/page/order', 'Order Pages'); ?></li>
+                <li><?php echo anchor('admin/user', 'Users'); ?></li>                
+                
             </ul>
         </div>
     </div>
