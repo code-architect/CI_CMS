@@ -9,8 +9,13 @@ class Page extends Frontend_Controller{
     
     
     public function index(){
-       
+       $this->load->view('_main_layout');
     }      
+    
+    
+    public function _404(){
+        $this->load->view('_main_layout/404');
+    }
     
     
 }

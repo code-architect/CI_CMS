@@ -1,2 +1,2 @@
 <?php
-$config['site_name'] = 'My Test Site';
+$config['site_name'] = 'Code-Architect';
