@@ -9,6 +9,79 @@ function btn_delete($uri){
     return anchor($uri, '<i class="icon-remove"></i>', array('onclick'  =>  "return confirm('Are you sure you want to delete this record?')"));
 }
 
+
+
+
+/**
+ * Article link
+ * @param unknown $article
+ * @return string
+ */
+function article_link($article){
+    return $url = 'article/'. intval($article->id) .'/'. e($article->slug);
+}
+
+
+
+
+/**
+ * Sidebar articles
+ * @param unknown $articles
+ */
+function article_links($articles){
+	$string = '<ul>';
+	foreach ($articles as $article) {
+		$url = article_link($article);
+		$string .= '<li class="sidebar">';
+		$string .= '<h3>' . anchor($url, e($article->title)) .  ' </h3>';
+		$string .= '<p class="pubdate">' . e($article->pubdate) . '</p>';
+		$string .= '</li>';
+	}
+	$string .= '</ul>';
+	return $string;
+}
+
+
+
+
+/**
+ * Number of words will be shown in the articles
+ * @param unknown $article
+ * @param number $numwords
+ * @return string
+ */ 
+function get_excerpt($article, $numwords = 50){
+    $string = '';
+    $url = article_link($article);
+    $string .= '<h2>'. anchor($url, e($article->title)) .'</h2>';
+    $string .= '<p class="pubdate">'. e($article->pubdate) .'</p>';
+    $string .= '<p>'. e(limit_to_numwords(strip_tags($article->body),$numwords)) .'</p>';
+    $string .= '<p>'. anchor($url, 'Read more >', array('title' => e($article->title))) .'</p>';
+    return $string;
+}
+
+
+
+
+/**
+ * Limit words
+ * @param unknown $string
+ * @param unknown $numwords
+ * @return string
+ */
+function limit_to_numwords($string , $numwords){
+    $excerpt = explode(' ', $string, $numwords + 1);
+    if(count($excerpt) >= $numwords){
+        array_pop($excerpt);
+    } 
+    $excerpt = implode(' ', $excerpt);
+    return $excerpt;
+}
+
+
+
+
+
 /**
  * Dump helper. Functions to dump variables to the screen, in a nicley formatted manner. 
  */

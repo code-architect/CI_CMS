@@ -4,7 +4,9 @@
    
 <div class="container">
 <section>
-	<h1><?php echo config_item('site_name'); ?></h1>
+	<h1><?php //echo anchor('', config_item('site_name')); ?>
+	<?php echo anchor('', img(site_url('assets/img/logo.jpg'))); ?>
+	</h1>
 </section>
 
 <!-- Navigation Starts -->
@@ -20,16 +22,8 @@
 <!-- Navigation Ends -->
 
 <div class="container">
-	<div class="row">
-	    <!-- Main Content -->
-		<div class="span9">
-		  <h2>Main Content</h2>
-		</div>
-		
-		<!-- Sidebar -->
-		<div class="span3">
-		  <h2>Recent News</h2>
-		</div>
+	<div class="row">	
+	    <?php $this->load->view('templates/' . $subview); ?>
 	</div>
 </div>
 <?php $this->load->view('components/page_footer'); ?>

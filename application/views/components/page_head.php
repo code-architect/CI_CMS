@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <title><?php echo config_item('site_name'); ?></title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="<?php echo site_url('assets/css/styles.css'); ?>" rel="stylesheet">
+    <!-- Bootstrap core CSS -->    
     <link href="<?php echo site_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet">
+    <link href="<?php echo site_url('assets/css/styles.css'); ?>" rel="stylesheet">
     <!-- <link href="<?php //echo site_url('assets/css/error.css'); ?>" rel="stylesheet"> -->
     
     <!-- Bootstrap core JavaScript -->    
