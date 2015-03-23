@@ -40,7 +40,7 @@
 
 $route['default_controller'] = "page";
 $route['404_override'] = 'page/_404';
-
+$route[':any'] = 'page/index/$1';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

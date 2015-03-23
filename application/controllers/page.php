@@ -8,13 +8,23 @@ class Page extends Frontend_Controller{
     
     
     
-    public function index(){
-       $this->load->view('_main_layout');
+    public function index(){       
+        
+       // Fetch the page data
+       // The true will return an object, rather than an array of objects  
+       $this->data['page'] = $this->page_m->get_by(array('slug' => (string)$this->uri->segment(1)), TRUE);  
+       count($this->data['page']) || show_404(current_url());   
+       $this->load->view('_main_layout', $this->data);
     }      
     
     
-    public function _404(){
-        $this->load->view('_main_layout/404');
+    
+    
+    /**
+     * Custom 404 error page
+     */
+    public function _404(){               
+        $this->load->view('404');
     }
     
     
