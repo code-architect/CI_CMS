@@ -27,7 +27,7 @@
     	
     	<tr>
     		<td>Body</td>
-    		<td><?php echo form_textarea('body', set_value('body', $page->body), 'class="tinymce"'); ?></td>
+    		<td><?php echo form_textarea('body', set_value('body', $page->body)); ?></td>
     	</tr>
     	   	
     	

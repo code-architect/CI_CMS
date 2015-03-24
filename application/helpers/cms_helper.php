@@ -1,8 +1,27 @@
 <?php
 
+/**
+ * Prepent a meta title
+ * @param unknown $string
+ */
+function add_meta_title($string)
+{
+    // Codeigniter super object
+    $CI =& get_instance();
+    $CI->data['meta_title'] = e($string).' - '.$CI->data['meta_title'];
+    
+}
+
+
+
+
+
 function btn_edit($uri){
     return anchor($uri, '<i class="icon-edit"></i>');    
 }
+
+
+
 
 
 function btn_delete($uri){
@@ -53,10 +72,13 @@ function article_links($articles){
 function get_excerpt($article, $numwords = 50){
     $string = '';
     $url = article_link($article);
+    
+               
     $string .= '<h2>'. anchor($url, e($article->title)) .'</h2>';
     $string .= '<p class="pubdate">Date Posted: <b>'. e($article->pubdate) .'</b></p>';
     $string .= '<p>'. e(limit_to_numwords(strip_tags($article->body),$numwords)) .'</p>';
     $string .= '<p>'. anchor($url, 'Read more >', array('title' => e($article->title))) .'</p>';
+        
     return $string;
 }
 
@@ -134,11 +156,13 @@ function get_menu($array, $child = FALSE)
         foreach ($array as $item){
             
             $active = $CI->uri->segment(1) == $item['slug']? TRUE : FALSE;
+            
             if (isset($item['children']) && count($item['children'])) {
                 $str .= $active ? '<li class="dropdown active">' : '<li class="dropdown">';
                 $str .= '<a class="dropdown-toggle" data-toggle="dropdown" href="'. site_url(e($item['slug'])) .'">'.e($item['title']);
                 $str .= '<b class="caret"></b></a>'. PHP_EOL;
                 $str .= get_menu($item['children'], TRUE);
+                
             } else {
                 $str .= $active ? '<li class="active">' : '<li>';
                 $str .= '<a href="'. site_url($item['slug']) .'">'. e($item['title']).'</a>';

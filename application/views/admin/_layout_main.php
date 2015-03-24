@@ -27,7 +27,11 @@
             <!-- Sidebar -->
             <div class="span3">
                 <section>
-                    <?php echo mailto('xyz@abc.com', '<i class="icon-user"></i> xyz@abc.com'); ?><br>
+                <?php 
+                    $name = $this->session->userdata('name');
+                    $email = $this->session->userdata('email');                     
+                ?>
+                    <?php echo mailto($name, '<i class="icon-user"></i>'.$email); ?><br>
                     <?php echo anchor('admin/user/logout', '<i class="icon-off"></i>logout'); ?>
                 </section>
             </div>

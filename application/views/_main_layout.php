@@ -15,6 +15,7 @@
 	<div class="navbar-inner">
 		<div class="container">
 		  <?php echo get_menu($menu); ?>
+		  
 		</div>
 	</div>
 </div>

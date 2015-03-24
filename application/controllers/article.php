@@ -2,8 +2,9 @@
 class Article extends Frontend_Controller{
 
     public function __construct(){
-        parent::__construct();    
-        $this->load->model('article_m');  
+        parent::__construct();   
+          
+        $this->data['recent_news'] = $this->article_m->get_recent(); 
         
     }
     
@@ -12,7 +13,8 @@ class Article extends Frontend_Controller{
     public function index($id, $slug){
         // Fetch the article
         $this->db->where('pubdate <=', date('Y-m-d'));
-        $this->data['article'] = $this->article_m->get($id);           
+        $this->data['article'] = $this->article_m->get($id);    
+        
         
         // Return 404 if the article was not found
         count($this->data['article']) || show_404(uri_string());
@@ -26,8 +28,15 @@ class Article extends Frontend_Controller{
         }
         
         // Load view
+        add_meta_title($this->data['article']->title);
         $this->data['subview'] = 'article';
         $this->load->view('_main_layout', $this->data);
     }
+    
+    
+    
+    
+    
+   
     
 }    

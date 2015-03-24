@@ -50,5 +50,24 @@ class Article_m extends MY_Model{
     
     
     
+    public function set_published(){
+        // TODO: Update all instance of update
+        $this->db->where('pubdate <=', date('Y-m-d'));
+    }
+    
+    
+    
+    
+    /**
+     * Get recent posts for sidebar
+     * @param number $limit
+     */     
+    public function get_recent($limit = 3){
+        $limit = (int) $limit;
+        $this->set_published();
+        $this->db->limit($limit);
+        return parent::get();
+    }
+    
     
 }
