@@ -15,6 +15,7 @@
     <h2>Recent News</h2>  
     
     <?php
+    echo anchor($news_archive_link, '+ News Archive');
     $articles = array_slice($articles, 3);
     echo article_links($articles);    
     ?>   

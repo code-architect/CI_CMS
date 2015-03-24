@@ -54,6 +54,19 @@ class Page_m extends MY_Model{
     
     
     /**
+     * Link to the news archive
+     */
+    public function get_archive_link(){
+        $page = parent::get_by(array('template' => 'news_archive'), TRUE);
+        return isset($page->slug)? $page->slug : '';
+    }
+    
+    
+    
+    
+    
+    
+    /**
      * Deleteing pages and updating child pages
      * @see MY_Model::delete()
      */

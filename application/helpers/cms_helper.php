@@ -33,8 +33,8 @@ function article_links($articles){
 	foreach ($articles as $article) {
 		$url = article_link($article);
 		$string .= '<li class="sidebar">';
-		$string .= '<h3>' . anchor($url, e($article->title)) .  ' </h3>';
-		$string .= '<p class="pubdate">' . e($article->pubdate) . '</p>';
+		$string .= '<h3>' . anchor($url, e($article->title)) .  ' &#x2192;</h3>';
+		$string .= '<p class="pubdate">Posted On: <b>' . e($article->pubdate) . '</b></p>';
 		$string .= '</li>';
 	}
 	$string .= '</ul>';
@@ -54,7 +54,7 @@ function get_excerpt($article, $numwords = 50){
     $string = '';
     $url = article_link($article);
     $string .= '<h2>'. anchor($url, e($article->title)) .'</h2>';
-    $string .= '<p class="pubdate">'. e($article->pubdate) .'</p>';
+    $string .= '<p class="pubdate">Date Posted: <b>'. e($article->pubdate) .'</b></p>';
     $string .= '<p>'. e(limit_to_numwords(strip_tags($article->body),$numwords)) .'</p>';
     $string .= '<p>'. anchor($url, 'Read more >', array('title' => e($article->title))) .'</p>';
     return $string;
